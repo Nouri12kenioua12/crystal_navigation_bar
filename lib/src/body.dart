@@ -28,9 +28,11 @@ class Body extends StatelessWidget {
   final Function(int index) onTap;
   final EdgeInsets itemPadding;
   final Color? indicatorColor;
+
   // final bool enablePaddingAnimation;
   final Color? splashColor;
   final double? splashBorderRadius;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -64,18 +66,22 @@ class Body extends StatelessWidget {
                   hoverColor: splashColor ?? selectedColor.withOpacity(0.1),
                   child: Stack(children: <Widget>[
                     Padding(
-                      padding: itemPadding +
-                          const EdgeInsets.symmetric(
-                            horizontal: 2,
-                          ),
-                      child: Icon(
-                        items.indexOf(item) == currentIndex
-                            ? item.icon
-                            : (item.unselectedIcon ?? item.icon),
-                        size: 24,
-                        color: Color.lerp(unselectedColor, selectedColor, t),
-                      ),
-                    ),
+                        padding: itemPadding +
+                            const EdgeInsets.symmetric(
+                              horizontal: 2,
+                            ),
+                        child: item.icon != null
+                            ? Icon(
+                                items.indexOf(item) == currentIndex
+                                    ? item.icon
+                                    : (item.unselectedIcon ?? item.icon),
+                                size: 24,
+                                color: Color.lerp(
+                                    unselectedColor, selectedColor, t),
+                              )
+                            : items.indexOf(item) == currentIndex
+                                ? item.child
+                                : item.unselectedChild ?? item.child),
                     ClipRect(
                       child: SizedBox(
                         height: 48,

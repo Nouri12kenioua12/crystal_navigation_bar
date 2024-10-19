@@ -98,6 +98,8 @@ class _HomePageState extends State<HomePage> {
   //     ),
   //   );
   // }
+  int inde = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,49 +108,83 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Text("jjj"),
       ),
-      bottomNavigationBar: CrystalNavigationBar(
-        currentIndex: 1,
-        height: 10,
-        indicatorColor: Theme.of(context).colorScheme.secondary,
-        unselectedItemColor: Colors.blue,
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        onTap: (index) {},
-        enableFloatingNavBar: false,
-        items: [
-          /// Home
-          CrystalNavigationBarItem(
-            icon: IconlyBold.home,
-            unselectedIcon: IconlyLight.home,
-            selectedColor: Colors.white,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 50,
+            spreadRadius: 5,
           ),
+        ]),
+        child: CrystalNavigationBar(
+          enableFloatingNavBar: false,
+          paddingR: EdgeInsets.zero,
+          marginR: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+          // itemPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+          margin: EdgeInsets.only(right: 10, left: 10, top: 0, bottom: 5),
+          enablePaddingAnimation: true,
 
-          /// Favourite
-          CrystalNavigationBarItem(
-            icon: IconlyBold.heart,
-            unselectedIcon: IconlyLight.heart,
-            selectedColor: Colors.red,
-          ),
+          unselectedItemColor: Colors.black87,
+          selectedItemColor: Color(0xFF8E2DE2),
+          // backgroundColor: Colors.white,
+          // Colors.black.withOpacity(0.1),
+          // outlineBorderColor: Colors.black.withOpacity(0.1),
 
-          /// Add
-          CrystalNavigationBarItem(
-            icon: IconlyBold.plus,
-            unselectedIcon: IconlyLight.plus,
-            selectedColor: Colors.white,
-          ),
+          currentIndex: inde,
+          onTap: (index) {
+            inde = index;
+            setState(() {});
+            // widget.navigationShell.goBranch(index,
+            //     initialLocation: widget.navigationShell.currentIndex == index);
+          },
 
-          /// Search
-          CrystalNavigationBarItem(
-              icon: IconlyBold.search,
-              unselectedIcon: IconlyLight.search,
-              selectedColor: Colors.white),
+          items: [
+            /// Home
+            CrystalNavigationBarItem(
+              child: Container(
+                height: 10,
+                width: 20,
+                color: Colors.red,
+              ),
+              unselectedChild: Container(
+                height: 10,
+                width: 20,
+                color: Colors.black87,
+              ),
+              // icon: Icons.home,
+              // unselectedIcon: Icons.home,
+              // selectedColor: Colors.black,
+            ),
 
-          /// Profile
-          CrystalNavigationBarItem(
-            icon: IconlyBold.user_2,
-            unselectedIcon: IconlyLight.user,
-            selectedColor: Colors.white,
-          ),
-        ],
+            /// Favourite
+            CrystalNavigationBarItem(
+              icon: Icons.abc_outlined,
+              unselectedIcon: Icons.abc_outlined,
+              // selectedColor: Colors.black,
+            ),
+
+            /// Add
+            CrystalNavigationBarItem(
+              icon: Icons.save,
+              unselectedIcon: Icons.save,
+              // selectedColor: Colors.black,
+            ),
+
+            /// Search
+            CrystalNavigationBarItem(
+              icon: Icons.search,
+              unselectedIcon: Icons.search,
+              // selectedColor: Colors.black,
+            ),
+
+            /// Profile
+            CrystalNavigationBarItem(
+              icon: Icons.add,
+              unselectedIcon: Icons.add,
+              // selectedColor: Colors.black,
+            ),
+          ],
+        ),
       ),
     );
   }
